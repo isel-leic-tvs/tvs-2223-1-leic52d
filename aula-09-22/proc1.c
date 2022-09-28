@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-#define WAIT_CHILD
+//#define WAIT_CHILD
 
 int main() {
 	printf("parent process is %d\n", getpid());
@@ -37,9 +37,14 @@ int main() {
 #ifdef WAIT_CHILD
 	waitpid(childproc, NULL, 0);
 #endif
-	
+
+	// if >WAIT_CHILD is not defined:
+	// what happens if parent ends before child?
+	// what happens if child ends before parent?
 	printf("parent: press return to terminate...");
 	getchar();
+#ifdef WAIT_CHILD	
 	printf("val after child termination: %d\n", val);
+#endif
 	return 0;
 }
