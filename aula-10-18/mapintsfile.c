@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 	
 	// DO MAP 
 	// testar com MAP_SHARED e MAP_PRIVATE
-	void *mapbase = mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, 0);
+	void *mapbase = mmap(NULL, size, PROT_WRITE, MAP_PRIVATE, fd, 0);
 	
 	if (mapbase == MAP_FAILED) {
 		perror("error mapping numbers file");
