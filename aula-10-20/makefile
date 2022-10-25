@@ -12,7 +12,7 @@ errno: errno.c
 	gcc -o errno $(CFLAGS) errno.c
 	
 libmath.so: math.c
-	gcc -o libmath.so $(CFLAGS) math.c -shared
+	gcc -o libmath.so $(CFLAGS) -fpic math.c -shared
 		
 client: client.c
 	gcc -o client $(CFLAGS) client.c ./libmath.so

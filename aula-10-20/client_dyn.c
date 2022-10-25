@@ -37,5 +37,7 @@ int main() {
 	printf("count_calls()=%d\n", v);
 	
 	dlclose(lib);
+	
+	susp_point("after close library");
 	return 0;
 }
