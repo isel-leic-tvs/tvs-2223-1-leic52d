@@ -46,7 +46,7 @@ int main() {
 	 
 	susp_point("initial()");
 		
-	byte *mapbase = (byte*) mmap(NULL, REG_SIZE, PROT_WRITE, MAP_ANONYMOUS | MAP_SHARED , -1 ,0);
+	byte *mapbase = (byte*) mmap(NULL, REG_SIZE, PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1 ,0);
 	if (mapbase == MAP_FAILED) {
 		perror("error mapping numbers file");
 		return 3;

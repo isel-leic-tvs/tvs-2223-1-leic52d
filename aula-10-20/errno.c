@@ -1,3 +1,12 @@
+/**
+ * for the most curious
+ * this program load errno  with an eror code received from input
+ * and show the respective error description via perror
+ * 
+ * 
+ * Try to understand what is happening here... 
+ */
+
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
