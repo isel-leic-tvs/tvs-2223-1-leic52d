@@ -63,6 +63,11 @@ int main() {
 	if ((pid=fork()) == 0) {
 		susp_point("child: on start");
 		
+		byte *mapbasec = (byte*) mmap(NULL, REG_SIZE, PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1 , 0);
+		if (mapbasec == MAP_FAILED) {
+			perror("child: error mapping numbers file");
+			exit(1);  
+		}
 		// ler da região de meória partilhada
 		int res = sum_data(mapbase, REG_SIZE);
 		printf("child: data region sum = %d\n", res);
