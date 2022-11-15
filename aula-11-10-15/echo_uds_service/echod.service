@@ -1,0 +1,11 @@
+[Unit]
+Description=Test Echo Service
+After=syslog.target 
+
+[Service]
+ExecStart=/opt/echod/echod
+Restart=on-abort
+Type=forking
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Echo daemon activation socket
+
+[Socket]
+ListenStream=/opt/echod/echod.sock
+
+[Install]
+WantedBy=sockets.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Test Echo Service
+After=syslog.target 
+Requires=echod.socket
+
+[Service]
+ExecStart=/opt/echod/echod
+User=root
+Group=root
+RestrictAddressFamilies=AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
