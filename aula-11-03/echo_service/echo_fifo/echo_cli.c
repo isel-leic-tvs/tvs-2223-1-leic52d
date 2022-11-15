@@ -15,7 +15,7 @@
  
 
 #define NITERS 1000
-#define SHOW_RESP
+//#define SHOW_RESP
 
 int create_fifo(const char *name) {
 	int fd; // fifo file descriptor

@@ -33,7 +33,8 @@ int create_bind_socket(const char* sock_name) {
 	srv_addr.sun_family = AF_UNIX;
 	strncpy(srv_addr.sun_path, sock_name, sizeof(srv_addr.sun_path) - 1);
 	
-	if (bind(sock, (struct sockaddr *) &srv_addr, sizeof(struct sockaddr_un)) == -1) {
+	if (bind(sock, (struct sockaddr *) &srv_addr, 
+	               sizeof(struct sockaddr_un)) == -1) {
 		close(sock);
 		return -3;
 	}
@@ -56,13 +57,13 @@ void process_connection(int cfd) {
 void run(int srv_sock) {
 	int cli_sock; // connection socket
 	for (;;) {  
-		 
+	
 		cli_sock = accept(srv_sock, NULL, NULL);
 		if (cli_sock == -1) {
 			fprintf(stderr, "error creating socket\n");
 			return;
 		}
-			
+	 
 		process_connection(cli_sock);	 
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * implements an echo server using a ring buffer based memory channel
+ * implements an echo server using ip domain stream sockets
  */
 
 #include <stdio.h>
@@ -46,7 +46,7 @@ void process_connection(int cli_sock) {
 	int nread;
 	
 	while ((nread = read(cli_sock, &msg, sizeof(echo_msg_t))) == sizeof(echo_msg_t)) {
-		write(cfd, &msg, sizeof(echo_msg_t));
+		write(cli_sock, &msg, sizeof(echo_msg_t));
 	}
 	close(cli_sock);	
 		 
@@ -63,17 +63,18 @@ void run(int srv_sock) {
 	
 	printf("server started!\n");
 	for (;;) {  
-		struct sockaddr_in srv_addr;
+		struct sockaddr_in cli_addr;
 		socklen_t addrlen = sizeof(struct sockaddr_in);
-		cli_sock = accept(srv_sock, (struct sockaddr *)  &srv_addr, &addrlen);
+		cli_sock = accept(srv_sock, (struct sockaddr *)  &cli_addr, &addrlen);
 		if (cli_sock == -1) {
 			fprintf(stderr, "error creating socket\n");
 			return;
 		}
-		printf("connected with %x, port %d...\n", srv_addr.sin_addr.s_addr, srv_addr.sin_port);
+		printf("connected with %x, port %d...\n", cli_addr.sin_addr.s_addr, cli_addr.sin_port);
 		
 		pthread_t cthread;
-		pthread_create(&cthread, NULL, dispatch_connection, (void *) (size_t) cli_sock);
+		pthread_create(&cthread, NULL, 
+		      dispatch_connection, (void *) (size_t) cli_sock);
 		  
 	}
 }

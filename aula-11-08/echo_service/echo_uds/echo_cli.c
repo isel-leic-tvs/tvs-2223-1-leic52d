@@ -35,9 +35,11 @@ int main(int argc, char *argv[]) {
 	
 	memset(&srv_address, 0, sizeof(struct sockaddr_un));
 	srv_address.sun_family = AF_UNIX;
-	strncpy(srv_address.sun_path, ECHO_SERVICE_NAME, sizeof(srv_address.sun_path) - 1);
+	strncpy(srv_address.sun_path, ECHO_SERVICE_NAME, 
+			sizeof(srv_address.sun_path) - 1);
 	
-	if (connect(cli_sock, (struct sockaddr *) &srv_address, sizeof(struct sockaddr_un)) == -1) {
+	if (connect(cli_sock, (struct sockaddr *) &srv_address, 
+	          sizeof(struct sockaddr_un)) == -1) {
 		fprintf(stderr, "Error connecting socket\n");
 		return 2;
 	}
@@ -60,6 +62,7 @@ int main(int argc, char *argv[]) {
 	
 	printf("%d tries in %ld micros!\n", NITERS, chrono_micros(chron));
 	
+	printf("press return to continue..."); getchar();
 	close(cli_sock);
 
 	printf("client done!\n");

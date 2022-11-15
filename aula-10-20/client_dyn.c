@@ -35,9 +35,9 @@ int main() {
 	
 	int v= ct_func();
 	printf("count_calls()=%d\n", v);
-	
+	susp_point("after call count_calls");
 	dlclose(lib);
 	
-	susp_point("after close library");
+	
 	return 0;
 }

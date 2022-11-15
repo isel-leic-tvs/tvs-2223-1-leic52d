@@ -13,7 +13,7 @@
 #define MAX_MSGS	1
 #define NITERS 1000
 
-#define SHOW_RESP
+// #define SHOW_RESP
 
 int main(int argc, char *argv[]) {
 	 
