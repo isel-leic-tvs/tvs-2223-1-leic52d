@@ -1,10 +1,10 @@
 [Unit]
 Description=Test Echo Service
 After=syslog.service 
-Requires=echod.socket
+Requires=echod_auto.socket
 
 [Service]
-ExecStart=/opt/echod_auto/echod
+ExecStart=/opt/echod_auto/echod_auto
 
 RestrictAddressFamilies=AF_UNIX
 

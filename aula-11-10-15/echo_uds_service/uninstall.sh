@@ -13,7 +13,7 @@ fi
 #terminate server if exists
 
 if systemctl is-active $ECHOD ; then
-	systemctl stop echod
+	systemctl stop $ECHOD
 	
 fi	
 systemctl disable echod
