@@ -1,10 +1,15 @@
 [Unit]
 Description=Test Echo Service
-After=syslog.target 
+After=syslog.service 
 
 [Service]
 ExecStart=/opt/echod/echod
+
+# restart na terminação por sinal não tratado (ex: SIGKILL)
 Restart=on-abort
+
+# O serviço usa o idioma de criar um filho para execução em background
+# se lançado da consola
 Type=forking
 
 [Install]

@@ -36,9 +36,12 @@ void sigterm_handler(int sig) {
 
 void init() {
 	// save daemon pid
+#ifdef WITH_PIDFILE
 	char pidfile[128];
 	sprintf(pidfile, "echo %d > %sechod.pid",  getpid(), ECHO_DIR);
 	system(pidfile); 
+#endif
+
 	init_log();
 	
 	//handling sigterm
@@ -113,6 +116,7 @@ void run() {
 
 int main(int argc, char *argv[]) {
 	if (fork() == 0) {
+		 
 		init();
 		
 		// create server socket

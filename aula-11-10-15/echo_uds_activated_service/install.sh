@@ -12,7 +12,7 @@ if [ ! -x $ECHOD ]; then
 	exit
 fi
 
-ECHOD_DIR=/opt/echod
+ECHOD_DIR=/opt/echod_auto
 SYSTD_DIR=/etc/systemd/system
 
 

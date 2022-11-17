@@ -1,12 +1,11 @@
 [Unit]
 Description=Test Echo Service
-After=syslog.target 
+After=syslog.service 
 Requires=echod.socket
 
 [Service]
-ExecStart=/opt/echod/echod
-User=root
-Group=root
+ExecStart=/opt/echod_auto/echod
+
 RestrictAddressFamilies=AF_UNIX
 
 [Install]

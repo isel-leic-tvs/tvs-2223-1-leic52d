@@ -2,7 +2,7 @@
 Description=Echo daemon activation socket
 
 [Socket]
-ListenStream=/opt/echod/echod.sock
+ListenStream=/opt/echod_auto/echod.sock
 
 [Install]
 WantedBy=sockets.target

@@ -1,6 +1,6 @@
 #pragma once
 
-#define ECHO_DIR	"/opt/echod/"
+#define ECHO_DIR	"/opt/echod_auto/"
 
 #define ECHO_SOCKET_NAME ECHO_DIR "echod.sock"
 

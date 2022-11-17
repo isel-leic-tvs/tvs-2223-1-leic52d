@@ -35,9 +35,12 @@ void sigterm_handler(int sig) {
 
 void init() {
 	// save daemon pid
+#ifdef WITH_PIDFILE
 	char pidfile[128];
 	sprintf(pidfile, "echo %d > %sechod.pid",  getpid(), ECHO_DIR);
 	system(pidfile); 
+#endif
+
 	init_log();
 	
 	//handling sigterm
@@ -45,32 +48,6 @@ void init() {
 }
 
 
-int create_bind_socket(const char* sock_name) {
-	int sock;
-	struct sockaddr_un srv_addr;
-	sock = socket(AF_UNIX, SOCK_STREAM, 0);
-	if (sock == -1) return -1;
-	
-	// remove old entry if exists
-	if (unlink(sock_name) == -1 && errno != ENOENT) {
-		close(sock);
-		return -2;
-	}
-		 
-		
-	/*  bind socket */
-	memset(&srv_addr, 0, sizeof(struct sockaddr_un));
-	srv_addr.sun_family = AF_UNIX;
-	strncpy(srv_addr.sun_path, sock_name, sizeof(srv_addr.sun_path) - 1);
-	
-	if (bind(sock, (struct sockaddr *) &srv_addr, 
-	               sizeof(struct sockaddr_un)) == -1) {
-		close(sock);
-		return -3;
-	}
-	
-	return sock;
-}
 
 void process_connection(int cfd) {
 	echo_msg_t msg;
@@ -110,7 +87,8 @@ void run() {
 }
 
 int main(int argc, char *argv[]) {
-		init();
+	
+	init();
 	
 	
 	int nfd = sd_listen_fds(0);
