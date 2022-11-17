@@ -3,6 +3,11 @@ Description=Test Echo Service
 After=syslog.service 
 
 [Service]
+
+# localização do ficheiro com o pid do processo servidor
+PIDFile=/opt/echod/echod.pid
+
+ 
 ExecStart=/opt/echod/echod
 
 # restart na terminação por sinal não tratado (ex: SIGKILL)

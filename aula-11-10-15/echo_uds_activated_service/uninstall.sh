@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ECHOD=echod
-ECHOD_DIR=/opt/$ECHOD_auto
+ECHOD=echod_auto
+ECHOD_DIR=/opt/$ECHOD
 SYSTD_DIR=/etc/systemd/system
  
 if [ ! -d $ECHOD_DIR ]; then

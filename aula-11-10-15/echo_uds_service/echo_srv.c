@@ -16,6 +16,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 
+ 
 // size of pending connections queue
 #define BACKLOG 128
 
@@ -36,12 +37,11 @@ void sigterm_handler(int sig) {
 
 void init() {
 	// save daemon pid
-#ifdef WITH_PIDFILE
+ 
 	char pidfile[128];
 	sprintf(pidfile, "echo %d > %sechod.pid",  getpid(), ECHO_DIR);
 	system(pidfile); 
-#endif
-
+ 
 	init_log();
 	
 	//handling sigterm

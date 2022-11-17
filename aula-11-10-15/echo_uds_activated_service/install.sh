@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ECHOD=echod
+ECHOD=echod_auto
 ECHOD_SRC=./echo_srv.c
 
 if [ ! -x $ECHOD ]; then
@@ -12,7 +12,7 @@ if [ ! -x $ECHOD ]; then
 	exit
 fi
 
-ECHOD_DIR=/opt/echod_auto
+ECHOD_DIR=/opt/$ECHOD
 SYSTD_DIR=/etc/systemd/system
 
 
