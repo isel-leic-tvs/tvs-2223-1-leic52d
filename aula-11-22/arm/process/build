@@ -1,0 +1,2 @@
+aarch64-linux-gnu-as hello_arm64.s -o asm64.o && aarch64-linux-gnu-ld asm64.o -o hello_arm64
+
